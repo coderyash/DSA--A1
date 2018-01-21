@@ -1,27 +1,52 @@
 #include<stdio.h>
 
-int multiply(int i,int arr_size, int max[])
+int multiply(int x, int* arr, int size)
 {
-  int carry = 0;
-  for(j=0;j<arr_size;j++)
+  int i,carry=0;
+  for(i=0;i<size;i++)
   {
-    max[i] = ()
+    int d = (arr[i]*x+carry);
+    arr[i] = d%10;
+    carry = d/10;
   }
-}
-void factorial(int* max, int num)
-{
-  int arr_size = 1;
-  max[0] = 1;
-  for(i=2;i<=num;i++)
+  while(i)
   {
-    arr_size = multiply(i,arr_size,max);
-  }
 
+    if(carry==0)
+    {
+
+      break;
+
+    }
+    arr[i]=carry%10;
+    carry = carry/10;
+    size++;
+    i++;
+  }
+  return size;
 }
+void fact(int n)
+{
+  int arr[1000],i;
+  arr[0]=1;
+  int size=1;
+  for(i=1;i<=n;i++)
+  {
+    size =  multiply(i,arr,size);
+  }
+  size--;
+  for(i=size;i>=0;i--)
+  {
+    printf("%d",arr[i]);
+  }
+  printf("\n");
+  printf("%d\n",i );
+}
+
 int main()
 {
-  int max[1000];
-  int num;
-  scanf("%d",&num);
-  factorial(max,num);
+  int n;
+  scanf("%d",&n);
+  fact(n);
+  return 0;
 }
